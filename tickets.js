@@ -1,15 +1,19 @@
 function isValidQuantity(quantity) {
   return quantity > 0 && quantity <= 20;
 }
-
-function calculateTicketPrice(quantity, basePrice, seatingType) {
-  let price = quantity * basePrice;
  
-  if (seatingType === "premium") {
-    price = price * 1.50;
+function calculateTicketPrice(quantity, basePrice, isPremium = false) {
+  let total = quantity * basePrice;
+
+  if (quantity >= 5) {
+    total *= 0.90;
   }
- 
-  return Math.round(price);
-}
 
+  if (isPremium) {
+    total *= 1.50;
+  }
+
+  return Math.round(total);
+}
+ 
 module.exports = { isValidQuantity, calculateTicketPrice };
